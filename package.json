@@ -1,0 +1,25 @@
+{
+  "name": "bee-bot",
+  "version": "1.0.0",
+  "description": "A discord bot built on Node.js for simple Hold'em",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://https://github.com/Jguo45/discord-bee-bot.git"
+  },
+  "author": "Johnny Guo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jguo45/discord-bee-bot/issues"
+  },
+  "homepage": "https://github.com/Jguo45/discord-bee-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "heroku": "^7.49.1",
+    "sqlite3": "^5.0.0"
+  }
+}
