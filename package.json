@@ -20,8 +20,8 @@
     "better-sqlite3": "^7.4.3",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "heroku": "^7.49.1",
-    "nodemon": "^2.0.7",
+    "heroku": "^7.56.1",
+    "nodemon": "^2.0.12",
     "sqlite3": "^5.0.0"
   }
 }
