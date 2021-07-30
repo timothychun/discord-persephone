@@ -31,7 +31,7 @@ module.exports = {
 
   clearTable(db) {
     const query = db.prepare(
-      `DROP TABLE mailbox;`
+      `DELETE FROM mailbox;`
     );
     query.run();
     this.createTable(db);
