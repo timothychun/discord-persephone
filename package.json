@@ -1,7 +1,7 @@
 {
   "name": "persephone-bot",
   "version": "1.0.0",
-  "description": "A discord bot built on Node.js for simple Hold'em",
+  "description": "A discord bot built on Node.js for receiving and viewing messages sent through dm's",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js"
@@ -23,6 +23,5 @@
     "heroku": "^7.49.1",
     "nodemon": "^2.0.7",
     "sqlite3": "^5.0.0",
-    "wokcommands": "^1.3.6"
   }
 }
