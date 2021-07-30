@@ -1,4 +1,4 @@
-# discord-persephone
+# Discord Persephone Bot
 
 This bot is a virtual mailbox that collects messages through it's dm's that can be viewed by users. 
 
