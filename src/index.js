@@ -11,12 +11,11 @@ const mailboxDir = './data/mailbox.txt';
 
 const PREFIX = "!";
 const adminID = process.env.ADMINID.split(' ');
-console.log(adminID[0]);
 
 // Login
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("for messages | !help", { type: "WATCHING" });
+  client.user.setActivity("for messages!", { type: "WATCHING" });
   queries.createTable(db);
 });
 
@@ -28,6 +27,7 @@ client.once("disconnect", () => {
   console.log("Disconnected!");
 });
 
+// restricted bot commands
 client.on("message", (msg) => {
   if (!msg.content.startsWith(PREFIX) || 
       !(msg.channel instanceof Discord.DMChannel) || 
@@ -37,16 +37,13 @@ client.on("message", (msg) => {
   const args = msg.content.slice(PREFIX.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
-  if (commandName === "view") {
+  // opens the mailbox to see messages
+  if (commandName === "open") {
     msg.channel.send({ files: [mailboxDir] });
   }
-
-  else if (commandName === "total") {
-    console.log(queries.getNumMessages(db));
-  }
-
+  
+  // clears the mailbox
   else if (commandName === 'clear') {
-    fs.writeFileSync('./data/mailbox.db', '');
     fs.writeFileSync(mailboxDir, '');
 
     queries.createTable(db);
@@ -56,24 +53,27 @@ client.on("message", (msg) => {
   }
 });
 
+// stores any dm to the bot that doesn't start with '!' as a message
 client.on('message', (msg) => {
   if (msg.author.bot || 
       msg.content.startsWith(PREFIX) || 
       !(msg.channel instanceof Discord.DMChannel) ) return;
 
   console.log(`Collected ${msg.content}`);
-
+  
+  // writes the message into a text file
   fs.appendFileSync(mailboxDir, `${msg.author.username} : ${msg.content}\n`, err => {
     if (err) {
       console.error(err);
       return;
     }
   });
+
   if (msg.content === 'pee') {
     msg.channel.send('bro wtf why?');
   }
   else {
-    msg.channel.send("Thank you for your message");
+    msg.channel.send("Thank you for your message!");
   }
 });
 
