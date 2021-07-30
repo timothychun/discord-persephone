@@ -1,5 +1,5 @@
 {
-  "name": "bee-bot",
+  "name": "persephone-bot",
   "version": "1.0.0",
   "description": "A discord bot built on Node.js for simple Hold'em",
   "main": "index.js",
@@ -8,18 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://https://github.com/Jguo45/discord-bee-bot.git"
+    "url": "git+https://github.com/Jguo45/discord-persephone.git"
   },
   "author": "Johnny Guo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jguo45/discord-bee-bot/issues"
+    "url": "https://github.com/Jguo45/discord-persephone/issues"
   },
-  "homepage": "https://github.com/Jguo45/discord-bee-bot#readme",
+  "homepage": "https://github.com/Jguo45/discord-persephone#readme",
   "dependencies": {
+    "better-sqlite3": "^7.4.3",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "heroku": "^7.49.1",
-    "sqlite3": "^5.0.0"
+    "nodemon": "^2.0.7",
+    "sqlite3": "^5.0.0",
+    "wokcommands": "^1.3.6"
   }
 }
