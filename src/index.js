@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const Database = require("better-sqlite3");
 const path = require("path");
+const https = require('https');
 const fs = require("fs");
 require("dotenv").config();
 
@@ -50,11 +51,29 @@ client.on("message", (msg) => {
   else if (commandName === "clear") {
     fs.writeFileSync(mailboxDir, "");
 
-    queries.createTable(db);
-
     console.log("Cleared Table");
     msg.channel.send("Cleared Table");
   }
+
+  // sets the mailbox to txt file sent to bot
+  else if (commandName === 'set') {
+    let filter = (m) => m.author.id === msg.author.id && m.channel instanceof Discord.DMChannel;
+    const collector = msg.channel.createMessageCollector(filter, {
+      max: 1,
+    });
+
+    msg.channel.send('Send file:');
+    collector.on('collect', (m) => {
+      let url = m.attachments.first().url;
+      const file = fs.createWriteStream(mailboxDir);
+      const request = https.get(url, (response) => {
+        response.pipe(file);
+        msg.channel.send('File recieved successfully');
+        console.log('Mailbox set');
+      });
+    });
+
+  } 
 });
 
 // unrestricted bot commands
@@ -74,6 +93,7 @@ client.on("message", (msg) => {
   if (
     msg.author.bot ||
     msg.content.startsWith(PREFIX) ||
+    msg.attachments.size > 0 || 
     !(msg.channel instanceof Discord.DMChannel)
   )
     return;

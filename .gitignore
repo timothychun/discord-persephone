@@ -1,3 +1,4 @@
 node_modules
 .env
 mailbox.db
+mailbox.txt
